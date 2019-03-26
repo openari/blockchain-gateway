@@ -1,0 +1,110 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Ethereum API"
+  },
+  "host": "ethereum-express.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "ethereum",
+      "description": "Ethereum API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/ethereum/sendTransaction": {
+      "post": {
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Send transaction",
+        "description": "Send Transaction to Ethereum Network\n",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/ethereum/network": {
+      "get": {
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get Ethereum network",
+        "description": "Get Ethereum network\n",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/ethereum/receipt": {
+      "get": {
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get transaction receipt",
+        "description": "Get transaction receipt\n",
+        "parameters": [
+          {
+            "name": "txhash",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "transaction hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SendTransaction": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
